@@ -1,33 +1,38 @@
-import { AppState, Auth0Provider, User } from "@auth0/auth0-react";
+import { Auth0Provider } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
 
-type props={
-    children:React.ReactNode;
-}
- function AuthProviderWithNavigate({children}:props) {
-    const domain=import.meta.env.VITE_AUTH0_DOMAIN;
-    const client=import.meta.env.VITE_AUTH0_CLIENT_ID;
-    const redirectUrl=import.meta.env.VITE_AUTH0_CALL_BACK_URL;
-    // console.log(import.meta.env);
-    // console.log(domain);
-    // console.log(client);
-    // console.log(redirectUrl);
-    
-    if ( !domain || !client || !redirectUrl ) {
-        throw new Error("un able to init auth")
-    }
-    const onRedirectCallback=(appState?: AppState, user?: User)=>{
-        console.log(user);
-        console.log(appState);
-        
-    }
+type props = {
+  children: React.ReactNode;
+};
+function AuthProviderWithNavigate({ children }: props) {
+  const navigte = useNavigate();
+  // const {getAccessTokenSilently}=useAuth0();
+  const audience=import.meta.env.VITE_AUTH0_AUDIENCE;
+  const domain = import.meta.env.VITE_AUTH0_DOMAIN;
+  const client = import.meta.env.VITE_AUTH0_CLIENT_ID;
+  const redirectUrl = import.meta.env.VITE_AUTH0_CALL_BACK_URL;
+
+  if (!domain || !client || !redirectUrl || !audience) {
+    throw new Error("un able to init auth in authprovider navigate");
+  }
+  const onRedirectCallback = () => {
+    // const accessToken=getAccessTokenSilently();
+    // console.log("token",accessToken);
+    console.log("blablabla.....");
+    navigte("/auth-callback");
+  };
   return (
     <div>
-      <Auth0Provider domain={domain} clientId={client} authorizationParams={{ redirect_uri: redirectUrl }} onRedirectCallback={onRedirectCallback}>
+      <Auth0Provider
+        domain={domain}
+        clientId={client}
+        authorizationParams={{ redirect_uri: redirectUrl ,audience,}}
+        onRedirectCallback={onRedirectCallback}
+      >
         {children}
       </Auth0Provider>
     </div>
-  )
+  );
 }
 
-export default AuthProviderWithNavigate
-
+export default AuthProviderWithNavigate;
