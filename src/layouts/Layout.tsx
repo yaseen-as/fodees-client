@@ -3,13 +3,14 @@ import Header from "@/components/Header"
 import Hero from "@/components/Hero"
 
 type Props={
-    children:React.ReactNode
+    children:React.ReactNode,
+    showHero?:boolean
 }
-export default function Layout({children}:Props) {
+export default function Layout({children ,showHero=false}:Props) {
   return (
     <div className="flex flex-col min-h-screen">
         <Header/>
-        <Hero/>
+        {showHero && <Hero/>}
       <div className="container flex-1 mx-auto py-10" >{children}</div>
       <Footer/>
     </div>
