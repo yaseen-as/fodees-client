@@ -5,29 +5,39 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
 import Logout from "./Logout";
 
-
 export default function MainNav() {
-  const { loginWithRedirect, isAuthenticated ,user} = useAuth0();
+  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
   return (
     <div>
       {isAuthenticated ? (
         <DropdownMenu>
-        <DropdownMenuTrigger><UserNameMenu /></DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel><Link to="/user-profile"><span>{user?.name} Profile</span></Link></DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <Logout/>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>        
+          <DropdownMenuTrigger>
+            <UserNameMenu />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem>
+              <Link to="/user-profile">
+                <span>{user?.name} Profile</span>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <Link to="/manage-restourant">
+                <span>Manage Restourant</span>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <Logout />
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       ) : (
         <Button
           variant="ghost"

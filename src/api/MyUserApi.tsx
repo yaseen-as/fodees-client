@@ -21,7 +21,8 @@ export const useGetMyUser=()=>{
     }
     return response.json();
   }
-  const { data: userData, isLoading, error } = useQuery<User, Error>({
+  const { data: userData, isLoading, error } = useQuery({
+  // const { data: userData, isLoading, error } = useQuery<User, Error>({
     queryKey: ["getuserData"],
     queryFn: getCurentUserRequest, 
   });  if(error){
