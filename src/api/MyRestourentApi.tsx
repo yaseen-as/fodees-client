@@ -5,12 +5,10 @@ import { toast } from "sonner";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-
-
 export const useGetMyRestourent = () => {
   const { getAccessTokenSilently } = useAuth0();
 
-  const getMyRestourentRequest = async ():Promise<Restourent> => {
+  const getMyRestourentRequest = async (): Promise<Restourent> => {
     const token = await getAccessTokenSilently();
     const response = await fetch(`${API_BASE_URL}/api/my/restourent`, {
       method: "GET",
@@ -23,12 +21,17 @@ export const useGetMyRestourent = () => {
     }
     return response.json();
   };
-  const {data:restourent,isLoading}=useQuery({queryKey:["feachMyRestourent"],queryFn:getMyRestourentRequest})
-  return {restourent,isLoading}
+  const { data: restourent, isLoading } = useQuery({
+    queryKey: ["feachMyRestourent"],
+    queryFn: getMyRestourentRequest,
+  });
+  return { restourent, isLoading };
 };
 export const useCreateMyRestourent = () => {
   const { getAccessTokenSilently } = useAuth0();
-  const CreateMyRestourentRequest = async (restourentFormData: FormData):Promise<Restourent> => {
+  const CreateMyRestourentRequest = async (
+    restourentFormData: FormData
+  ): Promise<Restourent> => {
     const token = await getAccessTokenSilently();
     const response = await fetch(`${API_BASE_URL}/api/my/restourent`, {
       method: "POST",
@@ -59,7 +62,9 @@ export const useCreateMyRestourent = () => {
 
 export const useUpdateMyRestourent = () => {
   const { getAccessTokenSilently } = useAuth0();
-  const updateMyRestourentRequest = async (restourentFormData: FormData):Promise<Restourent> => {
+  const updateMyRestourentRequest = async (
+    restourentFormData: FormData
+  ): Promise<Restourent> => {
     const token = await getAccessTokenSilently();
     const response = await fetch(`${API_BASE_URL}/api/my/restourent`, {
       method: "PUT",
@@ -87,5 +92,3 @@ export const useUpdateMyRestourent = () => {
   }
   return { updateRestourent, isPending };
 };
-
-

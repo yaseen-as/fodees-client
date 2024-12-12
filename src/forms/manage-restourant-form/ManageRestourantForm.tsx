@@ -1,6 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Form } from "react-router-dom";
 import { z } from "zod";
 import DetailesSection from "./DetailesSection";
 import { Separator } from "@/components/ui/separator";
@@ -11,6 +10,7 @@ import LoadingButton from "@/components/LoadingButton";
 import { Button } from "@/components/ui/button";
 import { Restourent } from "@/types";
 import { useEffect } from "react";
+import { Form } from "@/components/ui/form";
 
 const formSchema = z
   .object({
