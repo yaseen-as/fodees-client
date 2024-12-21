@@ -1,4 +1,4 @@
-import { Auth0Provider } from "@auth0/auth0-react";
+import { AppState, Auth0Provider } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 
 type props = {
@@ -15,11 +15,11 @@ function AuthProviderWithNavigate({ children }: props) {
   if (!domain || !client || !redirectUrl || !audience) {
     throw new Error("un able to init auth in authprovider navigate");
   }
-  const onRedirectCallback = () => {
+  const onRedirectCallback = (appState?:AppState) => {
     // const accessToken=getAccessTokenSilently();
     // console.log("token",accessToken);
-    console.log("blablabla.....");
-    navigte("/auth-callback");
+
+    navigte(appState?.returnTo || "/auth-callback");
   };
   return (
     <div>

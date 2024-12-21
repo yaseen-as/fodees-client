@@ -28,6 +28,7 @@ export default function MobilNav() {
                 <Link to="/user-profile">
                   <span>{user?.name} Profile</span>
                 </Link>
+                <Link to="/order-status" className="font-bold hover:text-orange-500">Order Status</Link>
                 <Link to="/manage-restourant">
                   <span>Manage Restourant</span>
                 </Link>
@@ -35,7 +36,7 @@ export default function MobilNav() {
               </div>
             ) : (
               <div>
-                <SheetTitle>whelcom to Foodees</SheetTitle>
+                <SheetTitle>welcome to Foodees</SheetTitle>
                 <SheetDescription className="flex">
                   {/* <Button className="flex-1 bg-orange-500 font-bold" >Login</Button> */}
                   <Button

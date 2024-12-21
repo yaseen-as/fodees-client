@@ -12,6 +12,28 @@ export type MenuItem = {
   price: number;
 };
 
+export type OrderStatus="placed"| "paid"| "inProgress"| "outForDelivery"| "delivered";
+
+export type Order = {
+  _id: string;
+  restaurant: Restourent;
+  user: User;
+  cartItems: {
+    menuItemId: string;
+    name: string;
+    quantity: string;
+  }[];
+  deliveryDetails:{
+    name:string;
+    addressLine:string;
+    city:string;
+    email:string;
+  };
+  totalAmount:number;
+  status:OrderStatus;
+  createdAt:string;
+};
+
 export type Restourent = {
   _id: string;
   user: string;

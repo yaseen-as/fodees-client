@@ -28,6 +28,10 @@ export default function MainNav() {
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
+            <Link to="/order-status" className="font-bold hover:text-orange-500">Order Status</Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
               <Link to="/manage-restourant">
                 <span>Manage Restourant</span>
               </Link>

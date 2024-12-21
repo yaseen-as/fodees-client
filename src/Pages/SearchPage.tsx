@@ -63,7 +63,7 @@ export default function SearchPage() {
     }));
   };
   if (isLoading) {
-    <span>Loading....</span>;
+    <span>Loading Serch page....</span>;
   }
   if (!result?.data || !city) {
     return <span>No Result found</span>;

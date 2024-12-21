@@ -1,10 +1,35 @@
 import { SearchState } from "@/Pages/SearchPage";
-import { RestourentSearchResponse } from "@/types";
+import { Restourent, RestourentSearchResponse } from "@/types";
 import { useQuery } from "@tanstack/react-query";
-import { URLSearchParams } from "url";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
+export const useGetRestourent = (
+  restourentId?:string
+) => {
+  const getRestourantByIdRequest = async (): Promise<Restourent> => {
+    const response = await fetch(
+      `${API_BASE_URL}/api/restourent/search/${restourentId}`,
+      {
+        method: "GET",
+      }
+    );
+    if (!response.ok) {
+      throw new Error("failed the fetch get restourent request");
+    }
+    return response.json();
+  };
+
+  const { data: restourant, isLoading } = useQuery({
+    queryKey: ["searchRequestResult"],
+    queryFn: getRestourantByIdRequest,
+    enabled: !!restourentId,
+  });
+  return {
+    restourant,
+    isLoading,
+  };
+};
 export const useSearchrestourent = (
   searchState: SearchState,
   city?: string
